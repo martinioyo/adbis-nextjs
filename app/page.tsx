@@ -2,18 +2,53 @@
 
 import Image from 'next/image';
 
-
 export default function Home() {
   return (
-    <main>
-      <div>
-        <h1>handlingsplan</h1>
-      </div>
-    </main>
+<main
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: 'lightblue',
+  }}
+>
+  <div style={{ position: 'relative' }}>
+    <h2
+      style={{
+        fontSize: '114px',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'red',
+      }}
+    >
+      E-learning yo
+    </h2>
+    <Image src="/Serene_Forest_Scene.jpeg" width={5000} height={5000} />
+  </div>
+  <div
+    className="tips-container"
+    style={{
+      color: 'red',
+      fontSize: '64px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <div
+      style={{
+        width: '100px',
+      }}
+    >
+      {' '}
+    </div>
+  </div>
+</main>
   );
 }
-
-
 
 // className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
 //         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
