@@ -155,10 +155,10 @@ export default function KnowledgeSharing() {
       {/* Navbar */}
       <div className="bg-white w-full p-4 fixed top-0 left-0 right-0 shadow-md z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-sm font-medium" style={{ color: '#00E000' }}>GreenE</div>
+        <div className="text-sm font-medium cursor-pointer" style={{ color: '#00E000' }}>GreenE</div>
           <div className="flex items-center">
-            <span className="text-sm font-medium text-gray-900 mr-4">{username}</span>
-            <button className="text-sm font-medium text-blue-600 hover:text-blue-800">Sign out</button>
+            <span className="text-sm font-medium text-gray-900 mr-4 cursor-pointer">{username}</span>
+            <button className="text-sm font-medium">Log ud</button>
           </div>
         </div>
       </div>
