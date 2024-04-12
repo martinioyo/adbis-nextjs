@@ -86,6 +86,7 @@ export default function KnowledgeSharing() {
 // @ts-nocheck
 'use client'; 
 
+import { BLOCKED_PAGES } from '@/node_modules/next/dist/shared/lib/constants';
 import Image from 'next/image';
 import { useState, useRef } from 'react'; // Make sure useRef is imported here
 //import imgIconPath from '../public/img_picture.png';
@@ -96,26 +97,30 @@ export default function KnowledgeSharing() {
   //const [showPlaceholder, setShowPlaceholder] = useState(true);
   //const [content, setContent] = useState('');
   //const [description, setDescription] = useState('');
+  //const [name, setName] = useState(''); // State for storing the user's name
   const descriptionRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [posts, setPosts] = useState([]);
+  const username = "Alex"; // Username displayed in the navbar, used for posts
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const descriptionHTML = descriptionRef.current.innerHTML;
-    console.log({ title, description: descriptionHTML, tags });
+    console.log({ title, description: descriptionHTML, tags, username });
     // Placeholder for API call
 
     // For posts
 
     // Create a new post object
-  const newPost = { title, description: descriptionHTML, tags };
+  const newPost = { title, description: descriptionHTML, tags, username };
   // Add the new post to the beginning of the posts array
   setPosts([newPost, ...posts]);
   // Reset the form fields
   setTitle('');
   //setDescription(''); // If you were using a state for description
   setTags('');
+  // Name
+  //setName(''); 
   descriptionRef.current.innerHTML = ''; // Clear the contentEditable div
   setIsTyping(false); // Reset typing state
   };
@@ -147,17 +152,28 @@ export default function KnowledgeSharing() {
     <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/Serene_Forest_Scene.jpeg) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
     {/* Overlay */}
       
+      {/* Navbar */}
+      <div className="bg-white w-full p-4 fixed top-0 left-0 right-0 shadow-md z-10">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="text-sm font-medium" style={{ color: '#00E000' }}>GreenE</div>
+          <div className="flex items-center">
+            <span className="text-sm font-medium text-gray-900 mr-4">{username}</span>
+            <button className="text-sm font-medium text-blue-600 hover:text-blue-800">Sign out</button>
+          </div>
+        </div>
+      </div>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-40 min-h-screen" ></div>
 
        {/* Title in the top middle */}
-       <div className="absolute top-2 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
+       <div className="absolute top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
         <h1 className="text-4xl font-bold text-white">Del din viden med dine kolleger</h1>
       </div>
 
   
       {/* Flex container for content */}
-      <div className="absolute top-10 inset-0 flex p-4">
+      <div className="absolute top-20 inset-0 flex p-4">
         {/* Form section on the left */}
         <div className="flex-1 flex flex-col items-start justify-center p-4">
           
@@ -179,12 +195,13 @@ export default function KnowledgeSharing() {
                 className="w-full text-sm border border-gray-300 rounded-md shadow-sm bg-white"
                 style={{ minHeight: '100px', padding: '1rem', boxSizing: 'border-box' }}
               >
+              
               </div>
             </div>
   
             {/* Image Upload */}
             <div className="mb-4">
-              <label htmlFor="imageUpload" className="block mb-2 text-sm font-medium text-gray-900">Upload Image</label>
+              <label htmlFor="imageUpload" className="block mb-2 text-sm font-medium text-gray-900">Upload billede</label>
               <input
                 type="file"
                 id="imageUpload"
@@ -193,7 +210,7 @@ export default function KnowledgeSharing() {
                 className="hidden" // Hide the default input
               />
               <label htmlFor="imageUpload" className="cursor-pointer inline-flex items-center justify-center w-full p-4 text-sm font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <span className="ml-2">Choose an image</span>
+                <span className="ml-2">Vælg billede</span>
               </label>
             </div>
   
@@ -213,6 +230,7 @@ export default function KnowledgeSharing() {
           {posts.map((post, index) => (
             <div key={index} className="mb-8 p-4 border border-gray-300 rounded-md shadow-sm bg-white">
               <h2 className="text-xl font-bold">{post.title}</h2>
+              <p className="font-bold">Delt af: {post.username}</p>
               <div dangerouslySetInnerHTML={{ __html: post.description }} />
               {post.tags && <p className="text-gray-600">Tags: {post.tags}</p>}
             </div>
