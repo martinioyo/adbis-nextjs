@@ -170,7 +170,9 @@ export default function KnowledgeSharing() {
 
   return (
     <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/Serene_Forest_Scene.jpeg) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
+    
     {/* Overlay */}
+    <div className="absolute inset-0 bg-black bg-opacity-40 min-h-screen" ></div>
       
       {/* Navbar */}
       <div className="bg-white w-full p-4 fixed top-0 left-0 right-0 shadow-md z-10">
@@ -183,25 +185,37 @@ export default function KnowledgeSharing() {
         </div>
       </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 min-h-screen" ></div>
+      {/* Sidebar */}
+    <div className="absolute top-12 left-0 bottom-0 bg-white w-48 p-4 shadow-md">
+      <ul className="space-y-4">
+        <div><li>Forum</li></div>
+        <div><li> + Nyt opslag</li></div>
+        <div><li>Gemte opslag</li></div>
+        <div><li>Mine opslag</li></div>
+        <div><li>Profil</li></div>
+      </ul>
+    </div>
 
        {/* Title in the top middle */}
        <div className="absolute top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
-        <h1 className="text-4xl font-bold text-white">Del din viden med dine kolleger</h1>
+        <h1 className="text-4xl font-bold text-white">GreenE Forum</h1>
       </div>
 
   
       {/* Flex container for content */}
-      <div className="absolute top-20 inset-0 flex p-4">
+      <div className="absolute top-20 left-40 right-0 p-4 flex" style={{ height: 'calc(100vh - 5px)' }}>
         {/* Form section on the left */}
-        <div className="flex-1 flex flex-col items-start justify-center p-4">
+        <div className="flex-1 flex flex-col items-start justify-center p-10" style={{ maxWidth: "400px", maxHeight: 'calc(100vh - 100px)'}}>
           
           
           <form onSubmit={handleSubmit} className="w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
+          <div className="mb-4">
+              <label htmlFor="text" className="flex block mb-2 text-sm font-bold text-gray-900 justify-center">Nyt Opslag</label>
+             
+            </div>
             {/* Title Input */}
             <div className="mb-4">
-              <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900">Title</label>
+              <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900">Titel</label>
               <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-4 text-sm border-gray-300 rounded-md shadow-sm" placeholder="Tilføj en titel til din viden" required />
             </div>
             
@@ -244,6 +258,18 @@ export default function KnowledgeSharing() {
             <button type="submit" className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Del din viden</button>
           </form>
         </div>
+
+        
+        {/* Right side boxes */}
+  
+        <div className="flex-1 flex p-4">
+        {/* News boxes */}
+       
+        <div className="flex justify-between items-center top-20">
+    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
+    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
+    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
+  </div>
   
         {/* Posts List on the right */}
         <div className="flex-1 max-w-md p-4">
@@ -257,6 +283,7 @@ export default function KnowledgeSharing() {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
   
