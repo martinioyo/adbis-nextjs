@@ -107,15 +107,12 @@ export default function KnowledgeSharing() {
     e.preventDefault();
     const descriptionHTML = descriptionRef.current.innerHTML;
     console.log({ title, description: descriptionHTML, tags, username });
-    // Placeholder for API call
-
-    // For posts
-
-    // Create a new post object
+    
+  // For posts
   const newPost = { title, description: descriptionHTML, tags, username };
-  // Add the new post to the beginning of the posts array
+  
   setPosts([newPost, ...posts]);
-  // Reset the form fields
+
   setTitle('');
   //setDescription(''); // If you were using a state for description
   setTags('');
@@ -124,21 +121,6 @@ export default function KnowledgeSharing() {
   descriptionRef.current.innerHTML = ''; // Clear the contentEditable div
   setIsTyping(false); // Reset typing state
   };
-
-  /*const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imgHtml = `<img src="${reader.result}" style="max-width: 100%;" />`;
-        descriptionRef.current.innerHTML += imgHtml;
-        //setShowPlaceholder(false);
-        //descriptionRef.current.focus(); // Focus the div to allow immediate typing
-        //setIsTyping(true); // Update typing state as we know there's content
-      };
-      reader.readAsDataURL(file);
-    }
-  }; */
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -262,19 +244,31 @@ export default function KnowledgeSharing() {
         
         {/* Right side boxes */}
   
-        <div className="flex-1 flex p-4">
+        <div className="flex-1 flex flex-col p-4" style={{ paddingLeft: '10px', marginLeft: '-20px'}}>
         {/* News boxes */}
        
-        <div className="flex justify-between items-center top-20">
-    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
-    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
-    <div className="bg-gray-200 rounded-md shadow" style={{ width: '200px', height: '200px', margin: "10px", marginTop: "-420px"}}>Nyhed</div>
-  </div>
+        <div className="flex justify-between" >
+          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px", }}>
+            <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
+            <p>Køb papir poser i stedet for plastik poser!</p>
+          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
+          </div>
+          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px"}}>
+          <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
+            <p>Køb papir poser i stedet for plastik poser!</p>
+          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
+          </div>
+          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px"}}>
+          <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
+            <p>Køb papir poser i stedet for plastik poser!</p>
+          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
+          </div>
+        </div>
   
         {/* Posts List on the right */}
-        <div className="flex-1 max-w-md p-4">
+        <div className="flex flex-wrap justify-start mt-4" >
           {posts.map((post, index) => (
-            <div key={index} className="mb-8 p-4 border border-gray-300 rounded-md shadow-sm bg-white">
+            <div key={index} className="mb-8 p-4 border border-gray-300 rounded-md shadow-sm bg-white w-1/3" style={{ width: 'calc(33.333% - 10px)', margin: "5px"}}>
               <h2 className="text-xl font-bold">{post.title}</h2>
               <p className="font-bold">Delt af: {post.username}</p>
               <div dangerouslySetInnerHTML={{ __html: post.description }} />
