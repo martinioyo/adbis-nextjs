@@ -125,7 +125,7 @@ export default function KnowledgeSharing() {
   setIsTyping(false); // Reset typing state
   };
 
-  const handleImageUpload = (e) => {
+  /*const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -138,7 +138,27 @@ export default function KnowledgeSharing() {
       };
       reader.readAsDataURL(file);
     }
-  };
+  }; */
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imgHtml = `<img src="${reader.result}" style="max-width: 100%;" alt="Uploaded Image"/>`;
+        descriptionRef.current.innerHTML += imgHtml;
+      };
+      reader.readAsDataURL(file);
+    } else if (file.type === 'application/pdf') {
+      const pdfHtml = `<a href="${URL.createObjectURL(file)}" target="_blank" style="color: #007BFF; text-decoration: underline; display: inline-block; margin-top: 5px;"> ${file.name}</a>`;
+      descriptionRef.current.innerHTML += pdfHtml;
+    } else if (file.type.startsWith('video/')) {
+      const videoHtml = `<video controls style="max-width: 100%;"><source src="${URL.createObjectURL(file)}" type="${file.type}">Your browser does not support the video tag.</video>`;
+      descriptionRef.current.innerHTML += videoHtml;
+    }
+  }; 
 
   const handleInput = (e) => {
     //setIsTyping(e.currentTarget.textContent.length > 0);
@@ -205,12 +225,12 @@ export default function KnowledgeSharing() {
               <input
                 type="file"
                 id="imageUpload"
-                accept="image/*"
+                accept="image/*, video/*, application/pdf"
                 onChange={handleImageUpload}
                 className="hidden" // Hide the default input
               />
               <label htmlFor="imageUpload" className="cursor-pointer inline-flex items-center justify-center w-full p-4 text-sm font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <span className="ml-2">Vælg billede</span>
+                <span className="ml-2">Vedhæft fil</span>
               </label>
             </div>
   
