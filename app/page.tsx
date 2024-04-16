@@ -101,6 +101,7 @@ export default function KnowledgeSharing() {
   const descriptionRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [showForm, setShowForm] = useState(false);
   const username = "Alex"; // Username displayed in the navbar, used for posts
 
   const handleSubmit = (e) => {
@@ -149,12 +150,14 @@ export default function KnowledgeSharing() {
     setIsTyping(hasContent);
   }; 
 
+  const toggleForm = () => setShowForm(!showForm);
+
 
   return (
     <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/Serene_Forest_Scene.jpeg) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
     
     {/* Overlay */}
-    <div className="absolute inset-0 bg-black bg-opacity-40 min-h-screen" ></div>
+    <div className="fixed inset-0 bg-black bg-opacity-40 min-h-screen" ></div>
       
       {/* Navbar */}
       <div className="bg-white w-full p-4 fixed top-0 left-0 right-0 shadow-md z-10">
@@ -168,13 +171,13 @@ export default function KnowledgeSharing() {
       </div>
 
       {/* Sidebar */}
-    <div className="absolute top-12 left-0 bottom-0 bg-white w-48 p-4 shadow-md">
+    <div className="fixed top-12 left-0 bottom-0 bg-white w-48 p-4 shadow-md">
       <ul className="space-y-4">
-        <div><li>Forum</li></div>
-        <div><li> + Nyt opslag</li></div>
-        <div><li>Gemte opslag</li></div>
-        <div><li>Mine opslag</li></div>
-        <div><li>Profil</li></div>
+        <div><li style={{ cursor: 'pointer' }}>Forum</li></div>
+        <div><li onClick={toggleForm} style={{ cursor: 'pointer' }}> + Nyt opslag</li></div>
+        <div><li style={{ cursor: 'pointer' }}>Gemte opslag</li></div>
+        <div><li style={{ cursor: 'pointer' }}>Mine opslag</li></div>
+        <div><li style={{ cursor: 'pointer' }}>Profil</li></div>
       </ul>
     </div>
 
@@ -187,11 +190,17 @@ export default function KnowledgeSharing() {
       {/* Flex container for content */}
       <div className="absolute top-20 left-40 right-0 p-4 flex" style={{ height: 'calc(100vh - 5px)' }}>
         {/* Form section on the left */}
-        <div className="flex-1 flex flex-col items-start justify-center p-10" style={{ maxWidth: "400px", maxHeight: 'calc(100vh - 100px)'}}>
+        {showForm && (
+        <div className="flex-1 flex flex-col items-start justify-center p-10" style={{ maxWidth: "400px", maxHeight: 'calc(100vh - 100px)', position: 'relative'}}>
           
           
           <form onSubmit={handleSubmit} className="w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
+            {/* Close button */}
+            <button onClick={toggleForm} type="button" className="absolute top-0 right-12 text-lg font-bold p-2 cursor-pointer">
+          &times;  {/* Styling to appear as 'x' */}
+        </button>
           <div className="mb-4">
+          
               <label htmlFor="text" className="flex block mb-2 text-sm font-bold text-gray-900 justify-center">Nyt Opslag</label>
              
             </div>
@@ -240,25 +249,29 @@ export default function KnowledgeSharing() {
             <button type="submit" className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Del din viden</button>
           </form>
         </div>
+        )}
 
         
         {/* Right side boxes */}
   
-        <div className="flex-1 flex flex-col p-4" style={{ paddingLeft: '10px', marginLeft: '-20px'}}>
-        {/* News boxes */}
+        <div className="flex-1 flex flex-col p-4" style={{ paddingLeft: '10px'}}>
        
-        <div className="flex justify-between" >
-          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px", }}>
+        {/* News boxes */}
+        
+       
+        <div className="flex justify-center mt-10" >
+        <h1 className='text-2xl' style={{marginLeft: '-700px', marginTop: '-40px', position: 'absolute', color: 'white', fontWeight: 'bold'}} >Nyheder</h1>
+          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
             <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
             <p>Køb papir poser i stedet for plastik poser!</p>
           <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
           </div>
-          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px"}}>
+          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
           <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
             <p>Køb papir poser i stedet for plastik poser!</p>
           <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
           </div>
-          <div className="bg-white rounded-md shadow" style={{ width: 'calc(33.333% - 10px)', height: '200px', padding: "10px"}}>
+          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
           <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
             <p>Køb papir poser i stedet for plastik poser!</p>
           <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
@@ -267,8 +280,9 @@ export default function KnowledgeSharing() {
   
         {/* Posts List on the right */}
         <div className="flex flex-wrap justify-start mt-4" >
+
           {posts.map((post, index) => (
-            <div key={index} className="mb-8 p-4 border border-gray-300 rounded-md shadow-sm bg-white w-1/3" style={{ width: 'calc(33.333% - 10px)', margin: "5px"}}>
+            <div key={index} className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white" style={{ width: '250px', height: '250px',  marginTop: "10px", marginRight: '20px'}}>
               <h2 className="text-xl font-bold">{post.title}</h2>
               <p className="font-bold">Delt af: {post.username}</p>
               <div dangerouslySetInnerHTML={{ __html: post.description }} />
