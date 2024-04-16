@@ -31,3 +31,10 @@ body {
     text-wrap: balance;
   }
 } */
+
+.sidebar-item:hover {
+  background-color: rgba(128, 128, 128, 0.5); /* Grey color with opacity */
+    border-radius: 5px; /* Slight round corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    cursor: pointer;
+}

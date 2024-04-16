@@ -154,6 +154,9 @@ export default function KnowledgeSharing() {
 
 
   return (
+
+  
+
     <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/Serene_Forest_Scene.jpeg) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
     
     {/* Overlay */}
@@ -171,13 +174,13 @@ export default function KnowledgeSharing() {
       </div>
 
       {/* Sidebar */}
-    <div className="fixed top-12 left-0 bottom-0 bg-white w-48 p-4 shadow-md">
+    <div className="fixed top-12 left-0 bottom-0 bg-white p-4 w-48 shadow-md">
       <ul className="space-y-4">
-        <div><li style={{ cursor: 'pointer' }}>Forum</li></div>
-        <div><li onClick={toggleForm} style={{ cursor: 'pointer' }}> + Nyt opslag</li></div>
-        <div><li style={{ cursor: 'pointer' }}>Gemte opslag</li></div>
-        <div><li style={{ cursor: 'pointer' }}>Mine opslag</li></div>
-        <div><li style={{ cursor: 'pointer' }}>Profil</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer'}}>Forum</li></div>
+        <div className='sidebar-item'><li onClick={toggleForm} style={{ cursor: 'pointer'}}> + Nyt opslag</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Gemte opslag</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Mine opslag</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Profil</li></div>
       </ul>
     </div>
 
