@@ -194,7 +194,7 @@ export default function KnowledgeSharing() {
       <div className="absolute top-20 left-40 right-0 p-4 flex" style={{ height: 'calc(100vh - 5px)' }}>
         {/* Form section on the left */}
         {showForm && (
-        <div className="flex-1 flex flex-col items-start justify-center p-10" style={{ maxWidth: "400px", maxHeight: 'calc(100vh - 100px)', position: 'relative'}}>
+        <div className=" flex flex-col items-start justify-center p-10" style={{ width: "400px", flexShrink: '0', maxHeight: 'calc(100vh - 100px)', position: 'relative'}}>
           
           
           <form onSubmit={handleSubmit} className="w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
@@ -242,7 +242,7 @@ export default function KnowledgeSharing() {
               </label>
             </div>
   
-            {/* Tags Input */}
+             {/* Tags Input */}
             <div className="mb-6">
               <label htmlFor="tags" className="block mb-2 text-sm font-medium text-gray-900">Tags</label>
               <input type="text" id="tags" value={tags} onChange={(e) => setTags(e.target.value)} className="w-full p-4 text-sm border-gray-300 rounded-md shadow-sm" placeholder="Tilføj tags til din viden" />
@@ -252,37 +252,16 @@ export default function KnowledgeSharing() {
             <button type="submit" className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Del din viden</button>
           </form>
         </div>
-        )}
+        )} 
 
         
         {/* Right side boxes */}
   
-        <div className="flex-1 flex flex-col p-4" style={{ paddingLeft: '10px'}}>
-       
-        {/* News boxes */}
         
        
-        <div className="flex justify-center mt-10" >
-        <h1 className='text-2xl' style={{marginLeft: '-700px', marginTop: '-40px', position: 'absolute', color: 'white', fontWeight: 'bold'}} >Nyheder</h1>
-          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
-            <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
-            <p>Køb papir poser i stedet for plastik poser!</p>
-          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
-          </div>
-          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
-          <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
-            <p>Køb papir poser i stedet for plastik poser!</p>
-          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
-          </div>
-          <div className="bg-white rounded-md shadow" style={{ width: '250px', height: '250px', padding: "10px", marginRight: '20px'}}>
-          <h3 className='font-bold'>Papirsposer erstatter plastikposer!</h3>
-            <p>Køb papir poser i stedet for plastik poser!</p>
-          <img src="poser.jpg" alt="billede" className='flex items-center justify-center w-1/2'/>
-          </div>
-        </div>
-  
+    
         {/* Posts List on the right */}
-        <div className="flex flex-wrap justify-start mt-4" >
+        <div className="flex flex-wrap justify-center align-center mt-4 ml-8" >
 
           {posts.map((post, index) => (
             <div key={index} className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white" style={{ width: '250px', height: '250px',  marginTop: "10px", marginRight: '20px'}}>
@@ -290,11 +269,15 @@ export default function KnowledgeSharing() {
               <p className="font-bold">Delt af: {post.username}</p>
               <div dangerouslySetInnerHTML={{ __html: post.description }} />
               {post.tags && <p className="text-gray-600">Tags: {post.tags}</p>}
+              <div className="mt-2 flex justify-between">
+          <button onClick={() => handleSavePost(post.id)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+          <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
+        </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    
     </div>
   );
   
