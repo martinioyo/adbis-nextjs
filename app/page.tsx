@@ -177,16 +177,16 @@ export default function KnowledgeSharing() {
     <div className="fixed top-12 left-0 bottom-0 bg-white p-4 w-48 shadow-md">
       <ul className="space-y-4">
         <div className='sidebar-item'><li style={{ cursor: 'pointer'}}>Forum</li></div>
-        <div className='sidebar-item'><li onClick={toggleForm} style={{ cursor: 'pointer'}}> + Nyt opslag</li></div>
-        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Gemte opslag</li></div>
-        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Mine opslag</li></div>
+        <div className='sidebar-item'><li onClick={toggleForm} style={{ cursor: 'pointer'}}> + Nyt handlingsplan</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Gemte</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Mine</li></div>
         <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Profil</li></div>
       </ul>
     </div>
 
        {/* Title in the top middle */}
        <div className="absolute top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
-        <h1 className="text-4xl font-bold text-white">GreenE Forum</h1>
+        <h1 className="text-4xl font-bold text-white">Handlingsplaner</h1>
       </div>
 
   
@@ -204,7 +204,7 @@ export default function KnowledgeSharing() {
         </button>
           <div className="mb-4">
           
-              <label htmlFor="text" className="flex block mb-2 text-sm font-bold text-gray-900 justify-center">Nyt Opslag</label>
+              <label htmlFor="text" className="flex block mb-2 text-sm font-bold text-gray-900 justify-center">Ny handlingsplan</label>
              
             </div>
             {/* Title Input */}
