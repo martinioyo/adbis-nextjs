@@ -3,10 +3,10 @@ import { Pool } from 'pg';
 
 // Configure your database connection here
 const pool = new Pool({
-  host: 'your-db-host',
-  user: 'your-db-user',
-  password: 'your-db-password',
-  database: 'your-db-name',
+  host: 'ep-blue-cell-a2wdg7nu-pooler.eu-central-1.aws.neon.tech',
+  user: 'default',
+  password: 'fbdTKOvw8o1p',
+  database: 'verceldb',
   port: 5432,  // Default PostgreSQL port
   ssl: {
     rejectUnauthorized: false  // Necessary if using self-signed certificates, adjust as needed for your security requirements

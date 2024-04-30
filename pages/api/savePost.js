@@ -4,7 +4,7 @@ import { savePostToDatabase } from '../../utils/database';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const userToken = getUserToken({ req });
+    const userToken = getUserToken(req );
     const postId = req.body.postId;
     try {
       await savePostToDatabase(postId, userToken);
