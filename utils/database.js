@@ -1,4 +1,3 @@
-
 import { Pool } from 'pg';
 
 // Configure your database connection here
@@ -7,19 +6,21 @@ const pool = new Pool({
   user: 'default',
   password: 'fbdTKOvw8o1p',
   database: 'verceldb',
-  port: 5432,  // Default PostgreSQL port
+  port: 5432,
   ssl: {
-    rejectUnauthorized: false  // Necessary if using self-signed certificates, adjust as needed for your security requirements
-  }
+    rejectUnauthorized: false,
+  },
 });
 
-export async function savePostToDatabase(postId, userToken) {
+// This function will save a post to the handlingsplaner table
+export async function savePostToDatabase(title, description, tags) {
+  const query =
+    'INSERT INTO public.handlingsplaner (title, beskrivelse, tags) VALUES ($1, $2, $3) RETURNING id';
+  const values = [title, description, tags];
   try {
-    const query = 'INSERT INTO saved_posts (post_id, user_token) VALUES ($1, $2)';
-    const result = await pool.query(query, [postId, userToken]);
-    return result;
+    const result = await pool.query(query, values);
+    return result.rows[0];
   } catch (error) {
-    // Log error in your server logs for debugging
     console.error('Database Error:', error);
     throw new Error('Failed to save post to the database');
   }

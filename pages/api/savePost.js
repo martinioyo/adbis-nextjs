@@ -1,14 +1,11 @@
-
-import { getUserToken } from '../../utils/cookies';
 import { savePostToDatabase } from '../../utils/database';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const userToken = getUserToken(req );
-    const postId = req.body.postId;
+    const { title, description, tags } = req.body;
     try {
-      await savePostToDatabase(postId, userToken);
-      res.status(200).json({ success: true });
+      const newPost = await savePostToDatabase(title, description, tags);
+      res.status(200).json({ success: true, id: newPost.id });
     } catch (error) {
       res.status(500).json({ success: false, error: error.message });
     }
@@ -17,5 +14,3 @@ export default async function handler(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
-
-
