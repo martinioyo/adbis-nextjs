@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 
-// Configure your database connection here
+// Configuration af databaseforbindelse
 const pool = new Pool({
   host: 'ep-blue-cell-a2wdg7nu-pooler.eu-central-1.aws.neon.tech',
   user: 'default',
@@ -12,7 +12,7 @@ const pool = new Pool({
   },
 });
 
-// This function will save a post to the handlingsplaner table
+// Denne funktion gemmer en handlingsplan til tabellen "handlingsplaner"
 export async function savePostToDatabase(title, description, tags) {
   const query =
     'INSERT INTO public.handlingsplaner (title, beskrivelse, tags) VALUES ($1, $2, $3) RETURNING id';

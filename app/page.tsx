@@ -10,30 +10,25 @@ export default function KnowledgeSharing() {
   const [isTyping, setIsTyping] = useState(false);
   const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const username = "Alex"; // Username displayed in the navbar, used for posts
+  const username = "Alex"; // Brugernavn eksempel
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const descriptionHTML = descriptionRef.current.innerHTML;
     console.log({ title, description: descriptionHTML, tags, username });
     
-    // For posts
+    // Til posts
     const newPost = { title, description: descriptionHTML, tags, username };
     
     setPosts([newPost, ...posts]);
-  
     setTitle('');
     setTags('');
-    descriptionRef.current.innerHTML = ''; // Clear the contentEditable div
-    setIsTyping(false); // Reset typing state
-
-    // Save post to the database
+    descriptionRef.current.innerHTML = '';
+    setIsTyping(false); 
     handleSavePost(newPost);
   };
 
   const handleInput = (e) => {
-    //setIsTyping(e.currentTarget.textContent.length > 0);
-    //setContent(descriptionRef.current.innerHTML);
     const hasContent = e.currentTarget.textContent.trim().length > 0;
     setIsTyping(hasContent);
   };
@@ -47,7 +42,7 @@ export default function KnowledgeSharing() {
       body: JSON.stringify({ 
         title: post.title, 
         description: post.description, 
-        tags: post.tags.split(',').map(tag => tag.trim()) // Split and trim tags
+        tags: post.tags.split(',').map(tag => tag.trim()) 
       }),
     });
     const data = await response.json();
@@ -68,7 +63,13 @@ export default function KnowledgeSharing() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-sm font-medium cursor-pointer" style={{ color: '#00E000' }}>GreenE</div>
           <div className="flex items-center">
-            <span className="text-sm font-medium text-gray-900 mr-4 cursor-pointer">{username}</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">Hjem</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">Om</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">IT</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">Kursusoversigt</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">Forum</span>
+          <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">Profil</span>
+            <span className="text-sm font-medium text-gray-900 mr-10 cursor-pointer">{username}</span>
             <button className="text-sm font-medium">Log ud</button>
           </div>
         </div>
