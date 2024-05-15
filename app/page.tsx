@@ -77,11 +77,11 @@ export default function KnowledgeSharing() {
 
       <div className="fixed top-12 left-0 bottom-0 bg-white p-4 w-48 shadow-md">
         <ul className="space-y-4">
-          <div className='sidebar-item'><li style={{ cursor: 'pointer'}}>Forum</li></div>
-          <div className='sidebar-item'><li onClick={toggleForm} style={{ cursor: 'pointer'}}> + Nyt handlingsplan</li></div>
+        <div className='sidebar-item'><li style={{ cursor: 'pointer', color: 'white'}}>Tekst</li></div>
+          <div className='sidebar-item'><li style={{ cursor: 'pointer'}}> + Inviter</li></div>
+          <div className='sidebar-item'><li onClick={toggleForm} style={{ cursor: 'pointer'}}> + Ny handlingsplan</li></div>
           <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Gemte</li></div>
           <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Mine</li></div>
-          <div className='sidebar-item'><li style={{ cursor: 'pointer' }}>Profil</li></div>
         </ul>
       </div>
 
@@ -136,19 +136,69 @@ export default function KnowledgeSharing() {
           </div>
         )}
         <div className="flex flex-wrap justify-center align-center mt-4 ml-8">
-          {posts.map((post, index) => (
-            <div key={index} className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px'}}>
-              <h2 className="text-xl font-bold">{post.title}</h2>
-              <p className="font-bold">Delt af: {post.username}</p>
-              <div dangerouslySetInnerHTML={{ __html: post.description }} />
-              {post.tags && <p className="text-gray-600">Tags: {post.tags}</p>}
-              <div className="mt-2 flex justify-between">
-                <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
-                <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
-              </div>
-            </div>
-          ))}
-        </div>
+  {posts.map((post, index) => (
+    <div key={index} className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>{post.title}</h2>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: {post.username}</p>
+      <div className="flex-grow overflow-auto">
+        <div dangerouslySetInnerHTML={{ __html: post.description }} style={{marginBottom: '10px', wordWrap: 'break-word' }} />
+        {post.tags && <p className="text-gray-600">Tags: {post.tags}</p>}
+      </div>
+      <div className="mt-auto flex justify-between">
+        <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+        <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
+      </div>
+    </div>
+  ))}
+</div>
+<div className="flex flex-wrap justify-center align-center ml-8" style={{marginTop: '300px'}}>
+    <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
+    <div style={{backgroundColor: '	#ffa07a', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Mangler</h2></div>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
+      <div className="flex-grow overflow-auto">
+        <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
+        <p className="text-gray-600">Tags: #Hejjj</p>
+      </div>
+      <div className="mt-auto flex justify-between">
+        <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+        <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
+      </div>
+    </div>
+</div>
+
+<div className="flex flex-wrap justify-center align-center ml-8" style={{marginTop: '300px'}}>
+    <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
+    <div style={{backgroundColor: '#98fb98', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Igangværende</h2></div>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
+      <div className="flex-grow overflow-auto">
+        <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
+        <p className="text-gray-600">Tags: #Hejjj</p>
+      </div>
+      <div className="mt-auto flex justify-between">
+        <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+        <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
+      </div>
+    </div>
+</div>
+
+<div className="flex flex-wrap justify-center align-center ml-8" style={{marginTop: '300px'}}>
+    <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
+    <div style={{backgroundColor: '#f5f5dc', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Færdig</h2></div>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
+      <div className="flex-grow overflow-auto">
+        <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
+        <p className="text-gray-600">Tags: #Hejjj</p>
+      </div>
+      <div className="mt-auto flex justify-between">
+        <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+        <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
+      </div>
+    </div>
+</div>
+
       </div>
     </div>
   );
