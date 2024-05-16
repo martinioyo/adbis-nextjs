@@ -85,15 +85,15 @@ export default function KnowledgeSharing() {
         </ul>
       </div>
 
-      <div className="absolute top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
-        <h1 className="text-4xl font-bold text-black">Handlingsplaner</h1>
+      <div className="fixed top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
+        <h1 className="text-4xl font-bold text-black mt-4">Handlingsplaner</h1>
       </div>
 
-      <div className="absolute top-20 left-40 right-0 p-4 flex" style={{ height: 'calc(100vh - 5px)' }}>
+      <div className="absolute top-20 left-40 right-0 p-4 flex flex-wrap" style={{ height: 'calc(100vh - 5px)'}}>
         {showForm && (
           <div className=" flex flex-col items-start justify-center p-10" style={{ width: "400px", flexShrink: '0', maxHeight: 'calc(100vh - 100px)', position: 'relative'}}>
             <form onSubmit={handleSubmit} className="w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
-              <button onClick={toggleForm} type="button" className="absolute top-0 right-12 text-lg font-bold p-2 cursor-pointer">
+              <button onClick={toggleForm} type="button" className="absolute top-2 right-12 text-lg font-bold p-2 cursor-pointer">
                 &times;
               </button>
               <div className="mb-4">
@@ -135,6 +135,7 @@ export default function KnowledgeSharing() {
             </form>
           </div>
         )}
+        
         <div className="flex flex-wrap justify-center align-center mt-4 ml-8">
   {posts.map((post, index) => (
     <div key={index} className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
@@ -151,14 +152,17 @@ export default function KnowledgeSharing() {
     </div>
   ))}
 </div>
+
+
+<div className='flex flex-wrap'>
 <div className="flex flex-wrap justify-center align-center ml-8" style={{marginTop: '300px'}}>
     <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
     <div style={{backgroundColor: '	#ffa07a', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Mangler</h2></div>
-      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
-      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Bestille handsker</h2>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: Thomas</p>
       <div className="flex-grow overflow-auto">
         <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
-        <p className="text-gray-600">Tags: #Hejjj</p>
+        <p className="text-gray-600">Tags: #newgloves</p>
       </div>
       <div className="mt-auto flex justify-between">
         <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
@@ -171,10 +175,10 @@ export default function KnowledgeSharing() {
     <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
     <div style={{backgroundColor: '#98fb98', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Igangværende</h2></div>
       <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
-      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
+      <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: Alex</p>
       <div className="flex-grow overflow-auto">
         <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
-        <p className="text-gray-600">Tags: #Hejjj</p>
+        <p className="text-gray-600">Tags: #bæredygtighed</p>
       </div>
       <div className="mt-auto flex justify-between">
         <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
@@ -186,17 +190,19 @@ export default function KnowledgeSharing() {
 <div className="flex flex-wrap justify-center align-center ml-8" style={{marginTop: '300px'}}>
     <div className="mb-4 p-4 border border-gray-300 rounded-md shadow-sm bg-white flex flex-col" style={{ width: '250px', height: '250px', marginTop: "10px", marginRight: '20px', overflow: 'hidden' }}>
     <div style={{backgroundColor: '#f5f5dc', borderRadius: '5px', marginBottom: '5px'}}><h2 className="text-xl font-bold" style={{ wordWrap: 'break-word', padding: '5px' }}>Færdig</h2></div>
-      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Købe bæredygtige poser</h2>
+      <h2 className="text-xl font-bold" style={{ wordWrap: 'break-word' }}>Navigere rundt på applikation</h2>
       <p className="font-bold" style={{ wordWrap: 'break-word' }}>Delt af: James</p>
       <div className="flex-grow overflow-auto">
         <div style={{marginBottom: '10px', wordWrap: 'break-word' }} />
-        <p className="text-gray-600">Tags: #Hejjj</p>
+        <p className="text-gray-600">Tags: #nyplatform</p>
       </div>
       <div className="mt-auto flex justify-between">
         <button onClick={() => handleSavePost(post)} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
         <button onClick={() => handleSharePost(post.id)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Share</button>
       </div>
     </div>
+</div>
+
 </div>
 
       </div>
