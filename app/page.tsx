@@ -56,8 +56,8 @@ export default function KnowledgeSharing() {
   const toggleForm = () => setShowForm(!showForm);
 
   return (
-    <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/Serene_Forest_Scene.jpeg) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
-      <div className="fixed inset-0 bg-black bg-opacity-40 min-h-screen"></div>
+    <div className="w-screen h-screen overflow-auto relative" style={{ background: 'url(/blade.png) no-repeat center center fixed', backgroundSize: 'cover', minHeight: '100vh' }}>
+      <div className="fixed inset-0  bg-opacity-40 min-h-screen"></div>
       
       <div className="bg-white w-full p-4 fixed top-0 left-0 right-0 shadow-md z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -86,7 +86,7 @@ export default function KnowledgeSharing() {
       </div>
 
       <div className="absolute top-10 left-1/2 transform -translate-x-1/2 p-4 w-full text-center z-10">
-        <h1 className="text-4xl font-bold text-white">Handlingsplaner</h1>
+        <h1 className="text-4xl font-bold text-black">Handlingsplaner</h1>
       </div>
 
       <div className="absolute top-20 left-40 right-0 p-4 flex" style={{ height: 'calc(100vh - 5px)' }}>
